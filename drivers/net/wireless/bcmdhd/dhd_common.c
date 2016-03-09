@@ -107,8 +107,10 @@ extern int dhd_change_mtu(dhd_pub_t *dhd, int new_mtu, int ifidx);
 extern int dhd_get_concurrent_capabilites(dhd_pub_t *dhd);
 #endif
 extern int dhd_socram_dump(struct dhd_bus *bus);
+#ifdef DNGL_EVENT_SUPPORT
 static void dngl_host_event_process(dhd_pub_t *dhdp, bcm_dngl_event_t *event, size_t pktlen);
 static int dngl_host_event(dhd_pub_t *dhdp, void *pktdata, size_t pktlen);
+#endif /* DNGL_EVENT_SUPPORT */
 bool ap_cfg_running = FALSE;
 bool ap_fw_loaded = FALSE;
 
@@ -1498,6 +1500,8 @@ dngl_host_event_process(dhd_pub_t *dhdp, bcm_dngl_event_t *event, size_t pktlen)
 	break;
 	}
 }
+#endif /* DNGL_EVENT_SUPPORT */
+
 int wl_host_event(dhd_pub_t *dhd_pub, int *ifidx, void *pktdata, size_t pktlen,
 	wl_event_msg_t *event, void **data_ptr, void *raw_event)
 {
